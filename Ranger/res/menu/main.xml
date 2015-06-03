@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:resauto="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.travinavi.MainActivity">
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        resauto:showAsAction="always"
+        android:icon="@drawable/ic_action_search"
+        android:title="Search"/>
+    <item
+            android:id="@+id/action_share"
+            android:orderInCategory="100"
+            resauto:showAsAction="always"
+            android:icon="@drawable/ic_social_share"
+            android:title="Share"/>
+    <item
+        android:id="@+id/action_copy"
+        android:orderInCategory="100"
+        resauto:showAsAction="ifRoom"
+        android:icon="@drawable/ic_content_copy"
+        android:title="Copy"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        resauto:showAsAction="never"/>
+
+</menu>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="other_login_link">------------使用其他账号登陆-------------</string>
+    <string name="forget_secret"><a href="#">忘记密码</a></string>
+
+    <!--微博授权相关-->
+    <string name="weibosdk_token_to_string_format_1">Token：%1$s \n有效期：%2$s</string>
+    <string name="weibosdk_token_has_existed">Token 仍在有效期内，无需再次登录。</string>
+    <string name="weibosdk_toast_auth_success">授权成功</string>
+    <string name="weibosdk_toast_auth_failed">授权失败</string>
+    <string name="weibosdk_toast_auth_canceled">取消授权</string>
+
+
+    <string name="app_name">Ranger</string>
+    <string name="travi_section">Tracker</string>
+    <string name="navi_section">Navigator</string>
+    <string name="login_section">Login</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Start</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="actionbar_spinner_list">
+        <item>全部路线</item>
+        <item>收藏路线</item>
+        <item>缓存路线</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" 
+    
+    android:background="#ffffff">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/top_bar_background">
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:padding="15dp"
+                android:text="注册"
+                android:textSize="24sp"
+                android:gravity="center"/>
+    </FrameLayout>
+
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="80dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        >
+
+    	<EditText
+            android:id="@+id/etNewUserName"
+	       	android:layout_width="match_parent"
+	       	android:layout_height="wrap_content"
+	      	android:background="@drawable/edittext_top_bg"
+	        android:padding="10dp"
+	        android:hint="User Name"
+	        android:textColorHint="#bbbbbb"
+	        android:drawableLeft="@drawable/user"/>
+    	<EditText 
+            android:id="@+id/etNewPassword"
+	       	android:layout_width="match_parent"
+	       	android:layout_height="wrap_content"
+	       	android:background="@drawable/edittext_default_bg"
+	       	android:layout_marginTop="-2dp"
+	        android:padding="10dp"
+	        android:hint="Password"
+	        android:textColorHint="#bbbbbb"
+            android:password="true"
+	        android:drawableLeft="@drawable/password"/>
+    	<EditText 
+            android:id="@+id/etNewPasswordConfirm"
+	       	android:layout_width="match_parent"
+	       	android:layout_height="wrap_content"
+	       	android:background="@drawable/edittext_bottom_bg"
+	       	android:layout_marginTop="-2dp"
+	        android:padding="10dp"
+	        android:hint="Password Confirm"
+	        android:textColorHint="#bbbbbb"
+	        android:password="true"
+	        android:drawableLeft="@drawable/password"/>
+        <Button 
+	       	android:id="@+id/btnSingUpConfirm"
+	       	android:layout_width="match_parent"
+	       	android:layout_height="wrap_content"
+	        android:padding="10dp"
+	        android:layout_marginTop="10dp"
+	       	android:text="注     册"
+	        style="@style/DefaultButtonText"
+	       	android:background="@drawable/button_default_bg"
+	       />
+        </LinearLayout>
+
+
+</LinearLayout>

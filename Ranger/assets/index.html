@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title></title>
+    <script src="js/bonsai.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+	<div id="player"></div>
+	
+	<script type="text/javascript">
+
+		function addStep(x, y){
+			bonsai.run(document.getElementById('player'), {
+				code: function(x, y){
+					new Circle(x, y, 10).addTo(stage).fill('red');
+				},
+				height: window.innerHeight,
+				width: window.innerWidth
+			});
+		};
+
+	</script>
+
+</body>
+
+</html>

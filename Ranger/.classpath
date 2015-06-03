@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="C:/Users/v-silwa/Downloads/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/v-silwa/Downloads/joda-time-2.5/joda-time-2.5.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/apache.wheel.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/google-play-services.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/guice-3.0-no_aop.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/intellij-annotations.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/roboguice-2.0.jar"/>
+	<classpathentry kind="lib" path="/HomeActivity/libs/volley.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/workspace/ArcMenu-master/library/bin/library.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

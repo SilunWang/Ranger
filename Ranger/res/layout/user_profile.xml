@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffe3e3E3"
+        android:id="@+id/id_user_profile">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@color/top_bar_background"
+        android:id="@+id/id_user_profile_top_bar">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:text="个人"
+                android:textSize="24sp"
+                android:layout_gravity="center"/>
+    </FrameLayout>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp">
+
+                <mass.Ranger.View.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/id_user_image"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/sharlock"
+                        android:layout_gravity="center"
+                        android:padding="5dp"
+                        android:layout_marginTop="10dp"
+                        app:border_width="2dp"
+                        app:border_color="#e7427495"/>
+
+                <TextView
+                        android:id="@+id/username_id"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="游  客"
+                        android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/user_detail_id"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+                <Button
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="24dp"
+                        android:text="帮助与反馈"
+                        android:textSize="16sp"
+                        android:gravity="center|left"/>
+                <Button
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="24dp"
+                        android:text="设置"
+                        android:textSize="16sp"
+                        android:gravity="center|left"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+        <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#e1e9ef">
+            <ImageButton
+                    android:id="@+id/id_toolbar_guider_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="80dp"
+                    android:scaleType="centerInside"
+                    android:background="#00000000"
+                    android:src="@drawable/bottom_toolbar_guider"
+                    android:layout_gravity="bottom|center_horizontal"/>
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="20dp">
+                <ImageButton
+                        android:id="@+id/id_toolbar_user_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:scaleType="centerInside"
+                        android:background="#00000000"
+                        android:src="@drawable/bottom_toolbar_user_click"
+                        android:layout_centerVertical="true"/>
+                <TextView
+                        android:id="@+id/id_toolbar_user_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="个 人"
+                        android:textSize="14sp"
+                        android:textColor="@color/bottom_bar_tv_color_clicked"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/id_toolbar_user_button"
+                        android:layout_marginTop="16dp"
+                        android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+            <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:layout_marginLeft="20dp">
+                <ImageButton
+                        android:id="@+id/id_toolbar_route_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="45dp"
+                        android:scaleType="centerInside"
+                        android:background="#00000000"
+                        android:src="@drawable/bottom_toolbar_route"
+                        android:layout_centerVertical="true"/>
+                <TextView
+                        android:id="@+id/id_toolbar_route_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="路 线"
+                        android:textSize="14sp"
+                        android:textColor="@color/bottom_bar_tv_color"
+                        android:textStyle="bold"
+                        android:layout_below="@+id/id_toolbar_route_button"
+                        android:layout_marginTop="16dp"
+                        android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+
