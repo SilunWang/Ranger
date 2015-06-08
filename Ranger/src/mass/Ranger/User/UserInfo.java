@@ -12,15 +12,15 @@ public class UserInfo {
     private String sessionID;
 
     public UserInfo(String userName, String userId) {
-       new UserInfo(userName, userId, null);
+        new UserInfo(userName, userId, null);
     }
 
-    public UserInfo(String userName, String userId, String sessionID){
-        if(sessionID != null){
+    public UserInfo(String userName, String userId, String sessionID) {
+        if (sessionID != null) {
             this.userName = userName;
             this.userId = userId;
             this.sessionID = sessionID;
-        }else{
+        } else {
             WebHelper webHelper = new WebHelper();
             this.userName = userName;
             this.userId = userId;
@@ -29,20 +29,17 @@ public class UserInfo {
 
     }
 
-    public String getUserId(){
+    public String getUserId() {
         return this.userId;
     }
 
-    public String getUserName(){
+    public String getUserName() {
         return this.userName;
     }
 
-    public String getSessionID(){
+    public String getSessionID() {
         return this.sessionID;
     }
-
-
-
 
 
 }

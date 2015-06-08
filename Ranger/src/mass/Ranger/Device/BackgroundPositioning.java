@@ -60,7 +60,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
         initSensors();
     }
 
-    private List<AccessPointReading> getCurrFingerprint(){
+    private List<AccessPointReading> getCurrFingerprint() {
         return currentFingerprint;
     }
 
@@ -134,8 +134,8 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
 
     @Override
     public void onMagneticFieldAccuracyChanged(int accuracy) {
-        if (accuracy<= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM && navigationStarted == true){
-            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(null);
+        if (accuracy <= SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM && navigationStarted == true) {
+            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(null);
             dlgAlert.setMessage("The accuracy of the magnet sensor is not satisfactory, please perform calibration gesture.")
                     .setMessage("Calibration required")
                     .setPositiveButton("OK", new Dialog.OnClickListener() {
@@ -158,7 +158,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
     @Override
     public void onStepDetected(StepCandidate step) {
         try {
-            if (parentActivity!= null){
+            if (parentActivity != null) {
                 parentActivity.setIndicator(true);
             }
             final double heading = step.getHeadingInDegree();
@@ -177,8 +177,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
                 initial_radian = radian;
                 radian = radian - initial_radian + Math.PI / 2;
                 radianInitialized = true;
-            }
-            else {
+            } else {
                 radian = radian - initial_radian + Math.PI / 2;
             }
             realtimeX += Math.cos(radian) * PathView.stepLength;
@@ -189,8 +188,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
                 if (!navigationStarted) {
                     PF.findStartingPoint(getCurrFingerprint());
                     navigationStarted = true;
-                }
-                else {
+                } else {
                     // put coordinates, wifi-fingerprint and magnet readings into pf
                     PF.input(realtimeX, realtimeY, getCurrFingerprint(), getCurrentMagnet());
                     NavigationActivity.pathView.addOneStep(PF.currTraceIndex, (float) PF.currXonTrace, (float) PF.currYonTrace, PF.radius);
@@ -206,7 +204,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
             }
             // init
             magnetReading = new ArrayList<Double>();
-            if (parentActivity!= null){
+            if (parentActivity != null) {
                 parentActivity.setIndicator(false);
             }
         } catch (Exception e) {
@@ -215,7 +213,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
 
     }
 
-    public void setParentActivity(NavigationActivity activity){
+    public void setParentActivity(NavigationActivity activity) {
         parentActivity = activity;
     }
 }

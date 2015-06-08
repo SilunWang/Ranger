@@ -30,7 +30,7 @@ public class SettingsFragment extends Fragment {
 
         SensorAdapter adapter = new SensorAdapter(getActivity(), R.layout.settings_item, sensorSettingItem);
 
-        listView = (ListView)setting.findViewById(R.id.settinglist);
+        listView = (ListView) setting.findViewById(R.id.settinglist);
         View header = getLayoutInflater(savedInstanceState).inflate(R.layout.settings_header, null);
         listView.addHeaderView(header);
         listView.setAdapter(adapter);

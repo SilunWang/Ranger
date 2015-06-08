@@ -16,25 +16,21 @@ package mass.Ranger.Algorithm.DTW.FastDtw.dtw;
  * @since Jun 30, 2004
  */
 
-public class WarpPathWindow extends SearchWindow
-{
+public class WarpPathWindow extends SearchWindow {
 
-   // CONSTANTS
-   private final static int defaultRadius = 0;
-
+    // CONSTANTS
+    private final static int defaultRadius = 0;
 
 
-   // CONSTRUCTORS
-   public WarpPathWindow(WarpPath path, int searchRadius)
-   {
-      super(path.get(path.size()-1).getCol()+1, path.get(path.size()-1).getRow()+1);
+    // CONSTRUCTORS
+    public WarpPathWindow(WarpPath path, int searchRadius) {
+        super(path.get(path.size() - 1).getCol() + 1, path.get(path.size() - 1).getRow() + 1);
 
-      for (int p=0; p<path.size(); p++)
-         super.markVisited(path.get(p).getCol(), path.get(p).getRow());
+        for (int p = 0; p < path.size(); p++)
+            super.markVisited(path.get(p).getCol(), path.get(p).getRow());
 
-      super.expandWindow(searchRadius);
-   }  // end Constructor
-
+        super.expandWindow(searchRadius);
+    }  // end Constructor
 
 
 }  // end class WarpPathWindow

@@ -11,29 +11,29 @@ public class Trace implements Parcelable {
      * Trace that just be created
      */
     @Expose
-    public static final int            STATE_CREATED    = 0;
+    public static final int STATE_CREATED = 0;
     /**
      * Trace that has been compressed
      */
     @Expose
-    public static final int            STATE_COMPRESSED = 1;
+    public static final int STATE_COMPRESSED = 1;
     /**
      * Trace that has been sent to server (i.e. this stepTrace can be remove from the service)
      */
     @Expose
-    public static final int            STATE_SENT       = 2;
+    public static final int STATE_SENT = 2;
     /**
      * Trace for floorsetup
      */
     @Expose
-    public static final int            TYPE_PLANE       = 0;
+    public static final int TYPE_PLANE = 0;
     /**
      * Trace for patrolling
      */
     @Expose
-    public static final int            TYPE_SPACE       = 1;
+    public static final int TYPE_SPACE = 1;
     @Expose
-    public static final Creator<Trace> CREATOR          = new Creator<Trace>() {
+    public static final Creator<Trace> CREATOR = new Creator<Trace>() {
         @Override
         public Trace createFromParcel(Parcel source) {
             return new Trace(source.readInt(), source.readInt(), source.readString());
@@ -44,9 +44,9 @@ public class Trace implements Parcelable {
             return new Trace[size];
         }
     };
-    private int    type;
-    private int    state;
-    private Date   date;
+    private int type;
+    private int state;
+    private Date date;
     private String uuid;
 
     public Trace(int type, String uuid) {
@@ -96,10 +96,10 @@ public class Trace implements Parcelable {
     @Override
     public String toString() {
         return "Trace{" +
-               "type=" + type +
-               ", state=" + state +
-               ", date=" + date +
-               ", uuid='" + uuid + '\'' +
-               '}';
+                "type=" + type +
+                ", state=" + state +
+                ", date=" + date +
+                ", uuid='" + uuid + '\'' +
+                '}';
     }
 }

@@ -10,17 +10,17 @@ import java.util.Map;
 public class TileInfo implements IZoneInfo {
     private final static String TAG = TileInfo.class.getName();
     private final HashMap<String, RSSDistribution> RSSDistributions;
-    private final HashMap<String, AccessPoint>     accessPoints;
+    private final HashMap<String, AccessPoint> accessPoints;
     @SerializedName("Boundary")
-    private       IBoundary                        boundary;
+    private IBoundary boundary;
     @SerializedName("Floor")
-    private       String                           floor;
+    private String floor;
     @SerializedName("Root")
-    private       IZoneInfo                        root;
+    private IZoneInfo root;
     @SerializedName("QuadKey")
-    private       String                           quadKey;
+    private String quadKey;
     @SerializedName("Origin")
-    private       GeoCoordinate                    origin;
+    private GeoCoordinate origin;
 
     public TileInfo() {
         RSSDistributions = new HashMap<String, RSSDistribution>();

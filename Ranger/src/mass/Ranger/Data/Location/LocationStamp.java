@@ -11,9 +11,9 @@ public class LocationStamp {
     @SerializedName("Location")
     private Location location;
     @SerializedName("Timestamp")
-    private Date     currentTime;
+    private Date currentTime;
     @SerializedName("VenueID")
-    private String   venueId;
+    private String venueId;
 
     public LocationStamp(Location location, Date currentTime, String venueId) {
         this.location = location;
@@ -44,9 +44,9 @@ public class LocationStamp {
     @Override
     public String toString() {
         return "LocationStamp{" +
-               "location=" + location +
-               ", currentTime=" + GsonUtil.DATE_TIME_FORMATTER.get().print(new DateTime(currentTime)) +
-               ", venueId='" + venueId + '\'' +
-               '}';
+                "location=" + location +
+                ", currentTime=" + GsonUtil.DATE_TIME_FORMATTER.get().print(new DateTime(currentTime)) +
+                ", venueId='" + venueId + '\'' +
+                '}';
     }
 }

@@ -20,7 +20,7 @@ public class ShareCheckDialogFragment extends DialogFragment {
     private ImageButton weiboShareBtn;
     private Button otherShareBtn;
 
-    public static ShareCheckDialogFragment newInstance(String title){
+    public static ShareCheckDialogFragment newInstance(String title) {
         ShareCheckDialogFragment fragment = new ShareCheckDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
@@ -34,7 +34,7 @@ public class ShareCheckDialogFragment extends DialogFragment {
         String title = getArguments().getString("title");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.share_check_dialog,null);
+        View view = inflater.inflate(R.layout.share_check_dialog, null);
         initView(view);
         builder.setView(view)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -52,7 +52,7 @@ public class ShareCheckDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public void initView(View view){
+    public void initView(View view) {
         weixinShareBtn = (ImageButton) view.findViewById(R.id.id_weixin_share);
         weiboShareBtn = (ImageButton) view.findViewById(R.id.id_weibo_share);
         otherShareBtn = (Button) view.findViewById(R.id.id_other_share);
@@ -60,7 +60,7 @@ public class ShareCheckDialogFragment extends DialogFragment {
         weixinShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_SEND);
+                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.setPackage("com.tencent.mm");
                 intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
@@ -73,7 +73,7 @@ public class ShareCheckDialogFragment extends DialogFragment {
         weiboShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_SEND);
+                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.setPackage("com.sina.weibo"); //setPackage方法直接跳到新浪微博
                 intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
@@ -86,7 +86,7 @@ public class ShareCheckDialogFragment extends DialogFragment {
         otherShareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Intent.ACTION_SEND);
+                Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
                 intent.putExtra(Intent.EXTRA_TEXT, "http://navimap.azurewebsites.net/Map/Index?id=78578377-9e1b-4629-a5d0-4440552ca45b");

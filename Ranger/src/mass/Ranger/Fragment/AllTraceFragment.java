@@ -30,7 +30,7 @@ public class AllTraceFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     //toolBar
-    private ImageButton toolRouteButton, toolUserButton,toolGuiderButton;
+    private ImageButton toolRouteButton, toolUserButton, toolGuiderButton;
     private Spinner titleSpinner;
 
     /**
@@ -73,7 +73,7 @@ public class AllTraceFragment extends Fragment {
         titleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), "Title change to!"+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Title change to!" + position, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -113,7 +113,7 @@ public class AllTraceFragment extends Fragment {
             public void onClick(View v) {
                 Intent i2 = new Intent(getActivity().getApplication(), UserProfileActivity.class);
                 startActivity(i2);
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -127,17 +127,17 @@ public class AllTraceFragment extends Fragment {
         listView.setAdapter(arrayAdapter);
     }
 
-    private void initView(){
+    private void initView() {
 
         //navi_test_btn = (Button) getActivity().findViewById(R.id.id_navi_test);
 
 
         //下拉菜单相关
-        String [] values = {"全部路线", "收藏路线" ,"已缓存" };
-        titleSpinner = (Spinner)parentView.findViewById(R.id.id_title_spinner);
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.self_spinner_item, values){
+        String[] values = {"全部路线", "收藏路线", "已缓存"};
+        titleSpinner = (Spinner) parentView.findViewById(R.id.id_title_spinner);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.self_spinner_item, values) {
             @Override
-            public View getView(int position, View convertView, ViewGroup parent){
+            public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
                 TextView textView = (TextView) v.findViewById(R.id.id_spinner_text);
                 textView.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -145,8 +145,7 @@ public class AllTraceFragment extends Fragment {
             }
 
             @Override
-            public View getDropDownView(int position, View convertView, ViewGroup parent)
-            {
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
                 View v = super.getDropDownView(position, convertView, parent);
                 TextView textView = (TextView) v.findViewById(android.R.id.text1);
                 textView.setGravity(Gravity.CENTER);
@@ -312,7 +311,7 @@ public class AllTraceFragment extends Fragment {
 //                getResources().getDisplayMetrics());
 //    }
 
-    private List<String> getTraceData(){
+    private List<String> getTraceData() {
         ArrayList<String> traceList = new ArrayList<String>();
         traceList.add("欧美汇 - 云海肴");
         traceList.add("芳草地 - 签证中心");
@@ -323,7 +322,7 @@ public class AllTraceFragment extends Fragment {
     }
 
     public void toNaviMap(View view) {
-        Intent i=new Intent(getActivity(), NavigationMapActivity.class);
+        Intent i = new Intent(getActivity(), NavigationMapActivity.class);
         startActivity(i);
     }
 

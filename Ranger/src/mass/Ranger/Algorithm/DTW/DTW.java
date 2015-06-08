@@ -15,11 +15,10 @@ public class DTW {
 
     private static int FastDtwRadius = 10;
 
-    enum DTWSource { Insertion, Deletion, Match }
+    enum DTWSource {Insertion, Deletion, Match}
 
     //计算两个序列的DTW距离
-    public static double getDTWDistance(ArrayList<Double> array1, ArrayList<Double> array2)
-    {
+    public static double getDTWDistance(ArrayList<Double> array1, ArrayList<Double> array2) {
         if (array1.size() == 0 || array2.size() == 0)
             return 0;
 
@@ -32,30 +31,23 @@ public class DTW {
         res[0][0] = 0;
 
         //计算“中心区”训练文件第i-1个矢量到测试文件第j-1个矢量的距离
-        double slope = (double)array2.size() / (double)array1.size();
+        double slope = (double) array2.size() / (double) array1.size();
         for (int i = 1; i <= array1.size(); i++)
-            for (int j = Math.max(1, (int)((i - array1.size() * DTWCoefficientForWidth / 100) * slope));
-                 j <= Math.min(array2.size(), (int)((i + array1.size() * DTWCoefficientForWidth / 100) * slope));
+            for (int j = Math.max(1, (int) ((i - array1.size() * DTWCoefficientForWidth / 100) * slope));
+                 j <= Math.min(array2.size(), (int) ((i + array1.size() * DTWCoefficientForWidth / 100) * slope));
                  j++)
                 res[i][j] = Math.abs(array1.get(i - 1) - array2.get(j - 1));
 
         //计算总距离
-        for (int i = 1; i <= array1.size(); i++)
-        {
-            for (int j = 1; j <= array2.size(); j++)
-            {
-                if (res[i - 1][j] <= res[i - 1][j - 1] && res[i - 1][j] <= res[i][j - 1])
-                {
+        for (int i = 1; i <= array1.size(); i++) {
+            for (int j = 1; j <= array2.size(); j++) {
+                if (res[i - 1][j] <= res[i - 1][j - 1] && res[i - 1][j] <= res[i][j - 1]) {
                     res[i][j] += res[i - 1][j];//insertion
                     path[i][j] = DTWSource.Insertion;
-                }
-                else if (res[i][j - 1] <= res[i - 1][ j - 1] && res[i][j - 1] <= res[i - 1][j])
-                {
+                } else if (res[i][j - 1] <= res[i - 1][j - 1] && res[i][j - 1] <= res[i - 1][j]) {
                     res[i][j] += res[i][j - 1];//deletion
                     path[i][j] = DTWSource.Deletion;
-                }
-                else
-                {
+                } else {
                     res[i][j] += res[i - 1][j - 1];//match
                     path[i][j] = DTWSource.Match;
                 }
@@ -66,14 +58,12 @@ public class DTW {
         int rows = array1.size();
         int columns = array2.size();
         int numOfSteps = 0;
-        while (rows > 0 && columns > 0)
-        {
+        while (rows > 0 && columns > 0) {
             if (path[rows][columns] == DTWSource.Insertion)
                 rows--;
             else if (path[rows][columns] == DTWSource.Deletion)
                 columns--;
-            else
-            {
+            else {
                 rows--;
                 columns--;
             }
@@ -84,7 +74,7 @@ public class DTW {
         return res[array1.size()][array2.size()] / numOfSteps;
     }
 
-    public static double getFastDtwDistance(ArrayList<Double> array1, ArrayList<Double> array2){
+    public static double getFastDtwDistance(ArrayList<Double> array1, ArrayList<Double> array2) {
         TimeSeries ts1 = new TimeSeries(1);
         TimeSeries ts2 = new TimeSeries(1);
         for (int i = 0; i < array1.size(); i++) {
@@ -94,12 +84,12 @@ public class DTW {
             ts2.addLast(i, new TimeSeriesPoint(new double[]{array2.get(i)}));
         }
         final DistanceFunction distFn = DistanceFunctionFactory.getDistFnByName("EuclideanDistance");
-        final TimeWarpInfo info = FastDTW.getWarpInfoBetween(ts1, ts2, FastDtwRadius, distFn );
+        final TimeWarpInfo info = FastDTW.getWarpInfoBetween(ts1, ts2, FastDtwRadius, distFn);
         return info.getDistance();
     }
-    
+
     //get DTW distance between 2 multi dimensional data array
-    public static double getMultiDimDtwDistance(ArrayList<DTWDataPoint> array1, int array1dim, ArrayList<DTWDataPoint> array2, int array2dim){
+    public static double getMultiDimDtwDistance(ArrayList<DTWDataPoint> array1, int array1dim, ArrayList<DTWDataPoint> array2, int array2dim) {
         TimeSeries ts1 = new TimeSeries(array1dim);
         TimeSeries ts2 = new TimeSeries(array2dim);
         for (int i = 0; i < array1.size(); i++) {
@@ -109,7 +99,7 @@ public class DTW {
             ts2.addLast(array2.get(i).timeStamp, new TimeSeriesPoint(array2.get(i).data));
         }
         final DistanceFunction distFn = DistanceFunctionFactory.getDistFnByName("EuclideanDistance");
-        final TimeWarpInfo info = FastDTW.getWarpInfoBetween(ts1,ts2, FastDtwRadius, distFn);
+        final TimeWarpInfo info = FastDTW.getWarpInfoBetween(ts1, ts2, FastDtwRadius, distFn);
         return info.getDistance();
     }
 }

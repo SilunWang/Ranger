@@ -21,22 +21,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class AppContext extends Application {
-    public final static  String                  BASIC_URL            = "BASIC_URL";
-    public static final  String                  LOG_LEVEL            = "LOG_LEVEL";
-    public static final  String                  LOG_TO_FILE          = "LOG_TO_FILE";
-    public static final  String                  STORE_TRACE          = "STORE_TRACE";
-    private final static String                  TAG                  = AppContext.class.getName();
-    private static final int                     CORE_POOL_SIZE       = 5;
-    private static final int                     MAXIMUM_POOL_SIZE    = 128;
-    private static final int                     KEEP_ALIVE           = 1;
-    private static final ThreadFactory           sThreadFactory       = new ThreadFactory() {
+    public final static String BASIC_URL = "BASIC_URL";
+    public static final String LOG_LEVEL = "LOG_LEVEL";
+    public static final String LOG_TO_FILE = "LOG_TO_FILE";
+    public static final String STORE_TRACE = "STORE_TRACE";
+    private final static String TAG = AppContext.class.getName();
+    private static final int CORE_POOL_SIZE = 5;
+    private static final int MAXIMUM_POOL_SIZE = 128;
+    private static final int KEEP_ALIVE = 1;
+    private static final ThreadFactory sThreadFactory = new ThreadFactory() {
         private final AtomicInteger mCount = new AtomicInteger(1);
 
         public Thread newThread(Runnable r) {
             return new Thread(r, "AsyncTask #" + mCount.getAndIncrement());
         }
     };
-    private static final BlockingQueue<Runnable> sPoolWorkQueue       =
+    private static final BlockingQueue<Runnable> sPoolWorkQueue =
             new PriorityBlockingQueue<Runnable>(128, new Comparator<Runnable>() {
                 @SuppressWarnings("ComparatorMethodParameterNotUsed")
                 @Override
@@ -48,14 +48,14 @@ public class AppContext extends Application {
     /**
      * An {@link java.util.concurrent.Executor} that can be used to execute tasks in parallel.
      */
-    private static final ThreadPoolExecutor      THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(CORE_POOL_SIZE,
+    private static final ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(CORE_POOL_SIZE,
             MAXIMUM_POOL_SIZE,
             KEEP_ALIVE,
             TimeUnit.HOURS,
             sPoolWorkQueue,
             sThreadFactory);
     private static AppContext CONTEXT;
-    private final TimerTask                       backgroundSyncTask        = new TimerTask() {
+    private final TimerTask backgroundSyncTask = new TimerTask() {
         @Override
         public void run() {
 
@@ -75,15 +75,15 @@ public class AppContext extends Application {
             };
 
     private SharedPreferences globalSharedPreferences;
-    private File              root;
-    private boolean  initialized = false;
+    private File root;
+    private boolean initialized = false;
 
     private Activity activeActivity;
-    private ReentrantLock       initializeLock        = new ReentrantLock();
-    private ReentrantLock       backgroundTaskLock    = new ReentrantLock();
-    private ReentrantLock       configLock            = new ReentrantLock();
-    private boolean             isBackgroundTaskStart = false;
-    private Map<String, String> configMap             = new HashMap<String, String>();
+    private ReentrantLock initializeLock = new ReentrantLock();
+    private ReentrantLock backgroundTaskLock = new ReentrantLock();
+    private ReentrantLock configLock = new ReentrantLock();
+    private boolean isBackgroundTaskStart = false;
+    private Map<String, String> configMap = new HashMap<String, String>();
     private Thread longPollingThread;
 
     public static AppContext get() {
@@ -109,7 +109,8 @@ public class AppContext extends Application {
         return THREAD_POOL_EXECUTOR.submit(task);
     }
 
-    @SuppressLint("NewApi") public static <Params, Progress, Result> void execute(AsyncTask<Params, Progress, Result> task, Params... params) {
+    @SuppressLint("NewApi")
+    public static <Params, Progress, Result> void execute(AsyncTask<Params, Progress, Result> task, Params... params) {
         task.executeOnExecutor(THREAD_POOL_EXECUTOR, params);
     }
 

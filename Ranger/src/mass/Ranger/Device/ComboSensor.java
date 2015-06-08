@@ -21,42 +21,42 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
     private static ComboSensor instance;
     private final Object wiFiStampLock = new Object();
     int flagUnChangeCount = 0;
-    private Sensor        accelerometer;
-    private Sensor        gyroscope;
-    private Sensor        magnetometer;
-    private Sensor        rotateVector;
-    private Sensor		  barometer;
+    private Sensor accelerometer;
+    private Sensor gyroscope;
+    private Sensor magnetometer;
+    private Sensor rotateVector;
+    private Sensor barometer;
     private SensorManager sensorManager;
-    private static WiFiScanner   wiFiScanner;
-    
-    private float[] acceleration         = new float[3];
+    private static WiFiScanner wiFiScanner;
+
+    private float[] acceleration = new float[3];
     private float[] accelerometerReading = new float[3];
-    private float[] gyroscopeReading     = new float[3];
-    private float[] gravity              = new float[3];
-    private float[] geomagnetic          = new float[3];
-    private float[] orientation          = new float[3];
+    private float[] gyroscopeReading = new float[3];
+    private float[] gravity = new float[3];
+    private float[] geomagnetic = new float[3];
+    private float[] orientation = new float[3];
     private float airpressure = 0;
-    
+
     private WiFiStamps wiFiStamps;
     /**
      * represent which sensor exists
      */
-    private int        sensorFlag;
+    private int sensorFlag;
     /**
      * represent which sensor has new data after last sync
      */
-    private int        syncFlag;
-    private HashSet<ComboSensorEventListener> listeners             = new HashSet<ComboSensorEventListener>();
-    private int                               magneticFieldAccuracy = SensorManager.SENSOR_STATUS_ACCURACY_LOW;
-    private ReentrantLock                     lock                  = new ReentrantLock();
+    private int syncFlag;
+    private HashSet<ComboSensorEventListener> listeners = new HashSet<ComboSensorEventListener>();
+    private int magneticFieldAccuracy = SensorManager.SENSOR_STATUS_ACCURACY_LOW;
+    private ReentrantLock lock = new ReentrantLock();
     private float[] rotateVectorReading;
-    private Stopwatch     stopwatch  = new Stopwatch();
+    private Stopwatch stopwatch = new Stopwatch();
     private AtomicInteger accCounter = new AtomicInteger();
     private AtomicInteger magCounter = new AtomicInteger();
     private AtomicInteger gyrCounter = new AtomicInteger();
     private AtomicInteger rotCounter = new AtomicInteger();
     private AtomicInteger baroCounter = new AtomicInteger();
-    
+
     public ComboSensor(Context context) {
         initSensor(context);
     }
@@ -128,12 +128,12 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
                     } else {
                         sensorFlag |= getFlag(Sensor.TYPE_ROTATION_VECTOR);
                     }
-                    
+
                     barometer = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
-                    if (barometer == null){
-                    	
+                    if (barometer == null) {
+
                     } else {
-                    	sensorFlag |= getFlag(Sensor.TYPE_PRESSURE);
+                        sensorFlag |= getFlag(Sensor.TYPE_PRESSURE);
                     }
 
                     wiFiScanner = new WiFiScanner(context);
@@ -169,14 +169,14 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
                     if (accelerometer != null) {
                         //Logger.v(TAG, MessageFormat.format("register {0} sensor", accelerometer.getName()));
                         sensorManager.registerListener(ComboSensor.this,
-                                                       accelerometer,
-                                                       SensorManager.SENSOR_DELAY_GAME);
+                                accelerometer,
+                                SensorManager.SENSOR_DELAY_GAME);
                     }
                     if (magnetometer != null) {
                         //Logger.v(TAG, MessageFormat.format("register {0} sensor", magnetometer.getName()));
                         sensorManager.registerListener(ComboSensor.this,
-                                                       magnetometer,
-                                                       SensorManager.SENSOR_DELAY_FASTEST);
+                                magnetometer,
+                                SensorManager.SENSOR_DELAY_FASTEST);
                     }
                     if (gyroscope != null) {
                         //Logger.v(TAG, MessageFormat.format("register {0} sensor", gyroscope.getName()));
@@ -185,13 +185,13 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
                     if (rotateVector != null) {
                         //Logger.v(TAG, MessageFormat.format("register {0} sensor", rotateVector.getName()));
                         sensorManager.registerListener(ComboSensor.this,
-                                                       rotateVector,
-                                                       SensorManager.SENSOR_DELAY_GAME);
+                                rotateVector,
+                                SensorManager.SENSOR_DELAY_GAME);
                     }
                     if (barometer != null) {
-                    	sensorManager.registerListener(ComboSensor.this, 
-                    									barometer,
-                    									SensorManager.SENSOR_DELAY_GAME);
+                        sensorManager.registerListener(ComboSensor.this,
+                                barometer,
+                                SensorManager.SENSOR_DELAY_GAME);
                     }
 
                     wiFiScanner.start(context);
@@ -210,7 +210,7 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
             sensorManager.unregisterListener(this);
             wiFiScanner.stop(context);
 
-            
+
         } finally {
             lock.unlock();
         }
@@ -249,10 +249,10 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
                 syncFlag |= flag;
                 break;
             case Sensor.TYPE_PRESSURE:
-            	airpressure = event.values[0];
-            	baroCounter.incrementAndGet();
-            	syncFlag |= flag;
-            	break;
+                airpressure = event.values[0];
+                baroCounter.incrementAndGet();
+                syncFlag |= flag;
+                break;
             default:
                 //Logger.w(TAG, MessageFormat.format("Unknown sensor type: {0}", event.sensor.getName()));
         }
@@ -295,7 +295,7 @@ public class ComboSensor implements SensorEventListener, WiFiScanner.WiFiScanner
                 lastReading.setQuaternion(new Quaternion(quaternion));
                 lastReading.setTimestamp(Utils.currentTimeTicks());
                 lastReading.setPressure(airpressure);
-                
+
                 synchronized (wiFiStampLock) {
                     if (wiFiStamps != null && !wiFiStamps.isEmpty()) {
                         lastReading.setWifiStamps(new WiFiStamps(wiFiStamps));

@@ -13,7 +13,6 @@ public class ActionbarDropDownListAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
 
 
-
     /**
      * View displayed inside the Action Bar
      */
@@ -40,9 +39,6 @@ public class ActionbarDropDownListAdapter extends BaseAdapter {
 
         return resultView;
     }
-
-
-
 
 
     @Override

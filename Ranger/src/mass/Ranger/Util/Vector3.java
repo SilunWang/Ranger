@@ -13,7 +13,7 @@ public class Vector3 {
 
     public Vector3(float[] array) {
         //if (array.length != 3) {
-            //throw new IndexOutOfBoundsException("Array should contains exactly 3 elements");
+        //throw new IndexOutOfBoundsException("Array should contains exactly 3 elements");
         //}
         this.X = array[0];
         this.Y = array[1];
@@ -31,10 +31,12 @@ public class Vector3 {
     }
 
     public static float dist(Vector3 v1, Vector3 v2) {
-        return (float) Math.sqrt((v1.X - v2.X)*(v1.X - v2.X) + (v1.Y - v2.Y)*(v1.Y - v2.Y)  + (v1.Z - v2.Z)*(v1.Z - v2.Z));
-    };
+        return (float) Math.sqrt((v1.X - v2.X) * (v1.X - v2.X) + (v1.Y - v2.Y) * (v1.Y - v2.Y) + (v1.Z - v2.Z) * (v1.Z - v2.Z));
+    }
 
-    public float magnitude(){
-        return dist(new Vector3(new float[]{0,0,0}),this);
+    ;
+
+    public float magnitude() {
+        return dist(new Vector3(new float[]{0, 0, 0}), this);
     }
 }

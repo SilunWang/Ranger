@@ -3,6 +3,9 @@ package mass.Ranger.Logger;
 /**
  * Created by Allen on 15/5/31.
  */
+
+import android.util.Log;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -10,13 +13,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import android.util.Log;
 
 public class MyLog {
-    private static Boolean MYLOG_SWITCH=true; // 日志文件总开关
-    private static Boolean MYLOG_WRITE_TO_FILE=true;// 日志写入文件开关
-    private static char MYLOG_TYPE='v';// 输入日志类型，w代表只输出告警信息等，v代表输出所有信息
-    private static String MYLOG_PATH_SDCARD_DIR="/sdcard/";// 日志文件在sdcard中的路径
+    private static Boolean MYLOG_SWITCH = true; // 日志文件总开关
+    private static Boolean MYLOG_WRITE_TO_FILE = true;// 日志写入文件开关
+    private static char MYLOG_TYPE = 'v';// 输入日志类型，w代表只输出告警信息等，v代表输出所有信息
+    private static String MYLOG_PATH_SDCARD_DIR = "/sdcard/";// 日志文件在sdcard中的路径
     private static int SDCARD_LOG_FILE_SAVE_DAYS = 0;// sd卡中日志文件的最多保存天数
     private static String MYLOGFILEName = "Log.txt";// 本类输出的日志文件名称
     private static SimpleDateFormat myLogSdf = new SimpleDateFormat(
@@ -93,8 +95,8 @@ public class MyLog {
     /**
      * 打开日志文件并写入日志
      *
-     * @return
-     * **/
+     * @return *
+     */
     private static void writeLogtoFile(String mylogtype, String tag, String text) {// 新建或打开日志文件
         Date nowtime = new Date();
         String needWriteFiel = logfile.format(nowtime);
@@ -117,7 +119,7 @@ public class MyLog {
 
     /**
      * 删除制定的日志文件
-     * */
+     */
     public static void delFile() {// 删除日志文件
         String needDelFiel = logfile.format(getDateBefore());
         File file = new File(MYLOG_PATH_SDCARD_DIR, needDelFiel + MYLOGFILEName);
@@ -128,7 +130,7 @@ public class MyLog {
 
     /**
      * 得到现在时间前的几天日期，用来得到需要删除的日志文件名
-     * */
+     */
     private static Date getDateBefore() {
         Date nowtime = new Date();
         Calendar now = Calendar.getInstance();

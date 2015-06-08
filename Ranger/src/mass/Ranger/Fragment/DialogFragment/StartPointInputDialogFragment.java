@@ -14,7 +14,7 @@ import com.example.travinavi.R;
  */
 public class StartPointInputDialogFragment extends DialogFragment {
 
-    public static StartPointInputDialogFragment newInstance(String title){
+    public static StartPointInputDialogFragment newInstance(String title) {
         StartPointInputDialogFragment fragment = new StartPointInputDialogFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
@@ -25,23 +25,23 @@ public class StartPointInputDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
-        String title =getArguments().getString("title");
+        String title = getArguments().getString("title");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.start_point_input_dialog,null))
-            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    EndPointInputDialogFragment endPointInputDialogFragment = EndPointInputDialogFragment.newInstance("请输入终点:");
-                    endPointInputDialogFragment.show(getFragmentManager(), "endPointInputDialog");
-                }
-            })
-            .setNegativeButton("跳过", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    EndPointInputDialogFragment endPointInputDialogFragment = EndPointInputDialogFragment.newInstance("请输入终点:");
-                    endPointInputDialogFragment.show(getFragmentManager(), "endPointInputDialog");
-                }
-            });
+        builder.setView(inflater.inflate(R.layout.start_point_input_dialog, null))
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        EndPointInputDialogFragment endPointInputDialogFragment = EndPointInputDialogFragment.newInstance("请输入终点:");
+                        endPointInputDialogFragment.show(getFragmentManager(), "endPointInputDialog");
+                    }
+                })
+                .setNegativeButton("跳过", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        EndPointInputDialogFragment endPointInputDialogFragment = EndPointInputDialogFragment.newInstance("请输入终点:");
+                        endPointInputDialogFragment.show(getFragmentManager(), "endPointInputDialog");
+                    }
+                });
         // Create the AlertDialog object and return it
         return builder.create();
     }

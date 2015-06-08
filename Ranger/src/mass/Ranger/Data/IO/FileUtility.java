@@ -48,7 +48,7 @@ public class FileUtility {
             @Override
             public boolean accept(File dir, String fileName) {
                 String fileEnd = fileName.substring(fileName.lastIndexOf(".") + 1,
-                                                    fileName.length());
+                        fileName.length());
                 return fileEnd.equalsIgnoreCase("stacktrace");
             }
         };
@@ -75,7 +75,7 @@ public class FileUtility {
 
     private static boolean isImageFile(String fileName) {
         String fileEnd = fileName.substring(fileName.lastIndexOf(".") + 1,
-                                            fileName.length());
+                fileName.length());
         return fileEnd.equalsIgnoreCase("jpg") || fileEnd.equalsIgnoreCase("png") || fileEnd.equalsIgnoreCase("bmp");
     }
 
@@ -99,7 +99,7 @@ public class FileUtility {
 
     private static boolean isAudioFile(String fileName) {
         String fileEnd = fileName.substring(fileName.lastIndexOf(".") + 1,
-                                            fileName.length());
+                fileName.length());
         return fileEnd.equalsIgnoreCase("aac");
     }
 

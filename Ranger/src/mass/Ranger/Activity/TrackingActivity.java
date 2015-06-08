@@ -41,7 +41,7 @@ public class TrackingActivity extends Activity {
     DataFiles dataFiles;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tracking_layout);
 
@@ -78,7 +78,7 @@ public class TrackingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 CompleteAlertDialogFragment confirmAlertWindow = CompleteAlertDialogFragment.newInstance("是否结束记录?");
-                confirmAlertWindow.show(getFragmentManager(),"confirmDialog");
+                confirmAlertWindow.show(getFragmentManager(), "confirmDialog");
             }
         });
 
@@ -88,7 +88,7 @@ public class TrackingActivity extends Activity {
 
     }
 
-    public void onDestroy(){
+    public void onDestroy() {
         if (serviceOn)
             try {
                 stopTrackingService();
@@ -105,24 +105,24 @@ public class TrackingActivity extends Activity {
         Toast.makeText(getApplicationContext(), "开始记录", Toast.LENGTH_SHORT).show();
     }
 
-        public void stopTrackingService() throws IOException {
+    public void stopTrackingService() throws IOException {
         dataFiles.closeFiles();
         backPositioning.stop();
         Toast.makeText(getApplicationContext(), "停止记录", Toast.LENGTH_SHORT).show();
     }
 
-    public void uploadData(){
+    public void uploadData() {
         try {
 
-                zipFilename = DataSerializer.rootname + "/" + BackgroundPositioning.patrollingID.toString() + ".zip";
-                ZipToFile.zipFile(DataSerializer.rootname, zipFilename);
-                webHelper.PostData(zipFilename);
+            zipFilename = DataSerializer.rootname + "/" + BackgroundPositioning.patrollingID.toString() + ".zip";
+            ZipToFile.zipFile(DataSerializer.rootname, zipFilename);
+            webHelper.PostData(zipFilename);
         } catch (Exception e) {
-                    e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
-    public void downloadData(){
+    public void downloadData() {
         webHelper.GetData();
     }
 

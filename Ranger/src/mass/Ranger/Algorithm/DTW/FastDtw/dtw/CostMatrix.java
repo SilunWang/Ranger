@@ -8,12 +8,11 @@
 package mass.Ranger.Algorithm.DTW.FastDtw.dtw;
 
 
-interface CostMatrix
-{
-   public void put(int col, int row, double value);
+interface CostMatrix {
+    public void put(int col, int row, double value);
 
-   public double get(int col, int row);
+    public double get(int col, int row);
 
-   public int size();
+    public int size();
 
 }  // end interface CostMatrix

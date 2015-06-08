@@ -12,18 +12,18 @@ import java.util.Random;
  * ParticleFilter class, contain all functions about filter process.
  */
 public class ParticleFilter extends IParticleFilter {
-    public static final  double DISTANCE_THRESHOLD  = 100.0;
-    private final static Random random              = new Random();
-    private static final String TAG                 = ParticleFilter.class.getName();
-    private              double estimatedStepLength = -1;
-    private int    PARTICLE_NUMBER;
-    private Point  estimatedPosition          = new Point(0, 0);
+    public static final double DISTANCE_THRESHOLD = 100.0;
+    private final static Random random = new Random();
+    private static final String TAG = ParticleFilter.class.getName();
+    private double estimatedStepLength = -1;
+    private int PARTICLE_NUMBER;
+    private Point estimatedPosition = new Point(0, 0);
     private double stepCountForStepEstimation = 0;
-    private double distanceForStepEstimation  = 0;
+    private double distanceForStepEstimation = 0;
     private Particle[] particles;
     private Particle[] newParticles;
-    private Point[]    initPoints;
-    private int[]      indexOfParticles;
+    private Point[] initPoints;
+    private int[] indexOfParticles;
     private boolean hasInitialized = false;
     private IBoundary boundary;
 

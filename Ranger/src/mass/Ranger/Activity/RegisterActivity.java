@@ -35,11 +35,11 @@ public class RegisterActivity extends Activity {
 
         webHelper = new WebHelper(this);
 
-        newUserNameEdt = (EditText)findViewById(R.id.etNewUserName);
-        newPasswordEdt1 = (EditText)findViewById(R.id.etNewPassword);
-        newPasswordEdt2 = (EditText)findViewById(R.id.etNewPasswordConfirm);
+        newUserNameEdt = (EditText) findViewById(R.id.etNewUserName);
+        newPasswordEdt1 = (EditText) findViewById(R.id.etNewPassword);
+        newPasswordEdt2 = (EditText) findViewById(R.id.etNewPasswordConfirm);
 
-        Button confirmBtn = (Button)findViewById(R.id.btnSingUpConfirm);
+        Button confirmBtn = (Button) findViewById(R.id.btnSingUpConfirm);
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,15 +49,14 @@ public class RegisterActivity extends Activity {
 
     }
 
-    private void RegisterMe()
-    {
+    private void RegisterMe() {
         //Get user details.
         String username = newUserNameEdt.getText().toString();
         String password = newPasswordEdt1.getText().toString();
         String confirmPassword = newPasswordEdt2.getText().toString();
 
         //Check if all fields have been completed.
-        if (username.equals("") || password.equals("")){
+        if (username.equals("") || password.equals("")) {
             Toast.makeText(getApplicationContext(),
                     "Please ensure all fields have been completed.",
                     Toast.LENGTH_SHORT).show();
@@ -78,12 +77,11 @@ public class RegisterActivity extends Activity {
         //Send username and password to web, implement registering.
         userInfo = webHelper.registerInWeb(username, password);
 
-        if(userInfo.getUserId() == null){
+        if (userInfo.getUserId() == null) {
             Toast.makeText(getApplicationContext(),
                     "Register error, please try again",
                     Toast.LENGTH_SHORT);
-        }
-        else{
+        } else {
             saveLoggedInUId(userInfo.getUserName(),
                     userInfo.getUserId(),
                     userInfo.getSessionID()
@@ -97,6 +95,7 @@ public class RegisterActivity extends Activity {
 
     /**
      * Hashes the password with MD5.
+     *
      * @param s
      * @return
      */
@@ -108,7 +107,7 @@ public class RegisterActivity extends Activity {
             byte messageDigest[] = digest.digest();
 
             StringBuffer hexString = new StringBuffer();
-            for (int i=0; i<messageDigest.length; i++)
+            for (int i = 0; i < messageDigest.length; i++)
                 hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
             return hexString.toString();
 
@@ -117,13 +116,13 @@ public class RegisterActivity extends Activity {
         }
     }
 
-    private void saveLoggedInUId(String username, String id,  String sessionID) {
+    private void saveLoggedInUId(String username, String id, String sessionID) {
         SharedPreferences userSettings = getSharedPreferences(LoginActivity.USER_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = userSettings.edit();
         editor.putString("username", username);
         editor.putString("userID", id);
         editor.putString("sessionID", sessionID);
-        editor.putBoolean("loggedIn",true);
+        editor.putBoolean("loggedIn", true);
         editor.commit();
     }
 

@@ -16,13 +16,13 @@ import com.example.travinavi.R;
 import mass.Ranger.Device.NewTaskMonitor;
 
 
-public class MainActivity extends FragmentActivity implements OnClickListener,NewTaskMonitor.ChangeListener {
+public class MainActivity extends FragmentActivity implements OnClickListener, NewTaskMonitor.ChangeListener {
 
-/**
- * Author: Silun Wang
- * Alias: v-silwa
- * Email: badjoker@163.com
- */
+    /**
+     * Author: Silun Wang
+     * Alias: v-silwa
+     * Email: badjoker@163.com
+     */
 
 
     private ActionBar mActionBar;
@@ -31,7 +31,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener,Ne
     private static Handler handler;
 
 
-    @SuppressLint({ "SetJavaScriptEnabled", "JavascriptInterface" })
+    @SuppressLint({"SetJavaScriptEnabled", "JavascriptInterface"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +52,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener,Ne
                 String message = (String) msg.obj;
                 if (message.equals("uploadDone")) {
                     Toast.makeText(getApplicationContext(), "Upload Done", Toast.LENGTH_SHORT).show();
-                }
-                else if (message.equals("downloadDone")) {
+                } else if (message.equals("downloadDone")) {
                     Toast.makeText(getApplicationContext(), "Download Done", Toast.LENGTH_SHORT).show();
                 }
                 super.handleMessage(msg);
@@ -72,7 +71,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener,Ne
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
     }
 
@@ -83,13 +82,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener,Ne
 
 
     @Override
-    public void onClick(View v) {}
+    public void onClick(View v) {
+    }
 
     @Override
-    public void onChanged(int localCount, int taskCount) {}
+    public void onChanged(int localCount, int taskCount) {
+    }
 
 
-    private void changeFragment(Fragment targetFragment){
+    private void changeFragment(Fragment targetFragment) {
         /*
         getSupportFragmentManager()
                 .beginTransaction()
@@ -97,7 +98,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener,Ne
                 .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();*/
     }
-
 
 
 }

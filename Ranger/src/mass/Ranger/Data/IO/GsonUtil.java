@@ -16,14 +16,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class GsonUtil {
-    public static final  ThreadLocal<DateTimeFormatter> DATE_TIME_FORMATTER = new ThreadLocal<DateTimeFormatter>() {
+    public static final ThreadLocal<DateTimeFormatter> DATE_TIME_FORMATTER = new ThreadLocal<DateTimeFormatter>() {
         @Override
         protected DateTimeFormatter initialValue() {
             return ISODateTimeFormat.dateTime();
         }
     };
-    private final static String                         TAG                 = GsonUtil.class.getName();
-    private final static Gson                           gson                = getGson();
+    private final static String TAG = GsonUtil.class.getName();
+    private final static Gson gson = getGson();
 
     public static Gson get() {
         return gson;
@@ -53,7 +53,7 @@ public final class GsonUtil {
         JsonDeserializer<Floors> zoneInfoJsonDeserializer = new JsonDeserializer<Floors>() {
             @Override
             public Floors deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws
-                                                                                                          JsonParseException {
+                    JsonParseException {
                 if (json instanceof JsonObject) {
                     JsonObject object = (JsonObject) json;
                     Floors floors = new Floors();
@@ -76,7 +76,7 @@ public final class GsonUtil {
         JsonDeserializer<IZoneInfo> zoneInfoJsonDeserializer = new JsonDeserializer<IZoneInfo>() {
             @Override
             public IZoneInfo deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws
-                                                                                                             JsonParseException {
+                    JsonParseException {
                 if (json instanceof JsonObject) {
                     JsonObject object = (JsonObject) json;
                     String typeString = object.get("__type").getAsString();
@@ -110,7 +110,7 @@ public final class GsonUtil {
                             try {
                                 return new Rectangle(minX, minY, maxX, maxY);
                             } catch (Exception e) {
-                                
+
                             }
                         }
                         return null;
@@ -188,7 +188,8 @@ public final class GsonUtil {
                         return array;
                     }
                 };
-        Type type = new TypeToken<HashMap>() {}.getType();
+        Type type = new TypeToken<HashMap>() {
+        }.getType();
         builder.registerTypeAdapter(type, mapJsonDeserializer);
         builder.registerTypeAdapter(type, mapJsonSerializer);
         return builder;
@@ -212,7 +213,8 @@ public final class GsonUtil {
                         return new Gson().toJsonTree(Base64.encodeToString(src, android.util.Base64.DEFAULT));
                     }
                 };
-        Type type = new TypeToken<byte[]>() {}.getType();
+        Type type = new TypeToken<byte[]>() {
+        }.getType();
         builder.registerTypeAdapter(type, bytesJsonDeserializer);
         builder.registerTypeAdapter(type, bytesJsonSerializer);
         return builder;
@@ -236,13 +238,15 @@ public final class GsonUtil {
                     if (xElement != null) {
                         try {
                             x = Double.parseDouble(xElement.getAsString());
-                        } catch (NumberFormatException ignored) {}
+                        } catch (NumberFormatException ignored) {
+                        }
                     }
                     JsonElement yElement = object.get("Y");
                     if (yElement != null) {
                         try {
                             y = Double.parseDouble(yElement.getAsString());
-                        } catch (NumberFormatException ignored) {}
+                        } catch (NumberFormatException ignored) {
+                        }
                     }
                     return new Location(x, y, floor);
                 } catch (IllegalStateException ex) {

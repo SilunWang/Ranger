@@ -18,18 +18,18 @@ import java.util.concurrent.locks.ReentrantLock;
 public class DataSerializer {
     // TODO distinguish patrolling and floor setup
     UserInfo userInfo;
-    public final static  String        SENSOR_FILE   = "sensor.txt";
-    public final static  String        WIFI_FILE     = "wifi.txt";
-    public final static  String        INFO_FILE     = "info.txt";
-    private final static String        TAG           = DataSerializer.class.getName();
-    private final static ReentrantLock lock          = new ReentrantLock();
-    public               TimerTask     timerTask     = new TimerTask() {
+    public final static String SENSOR_FILE = "sensor.txt";
+    public final static String WIFI_FILE = "wifi.txt";
+    public final static String INFO_FILE = "info.txt";
+    private final static String TAG = DataSerializer.class.getName();
+    private final static ReentrantLock lock = new ReentrantLock();
+    public TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
             lock.lock();
             try {
                 // Not store stepTrace, just clear the cache
-            	/*
+                /*
                 if (!"1".equals(AppContext.get().getConfigs().get(AppContext.STORE_TRACE))) {
                     linkedList.clear();
                     return;
@@ -65,7 +65,7 @@ public class DataSerializer {
     private BufferedWriter sensorWriter;
     private RawDataSerializer<ComboSensorReading> comboSensorSerializer = new RawDataSerializer<ComboSensorReading>
             (ComboSensorReading.class);
-    private ConcurrentLinkedQueue<Tuple>          linkedList            = new ConcurrentLinkedQueue<Tuple>();
+    private ConcurrentLinkedQueue<Tuple> linkedList = new ConcurrentLinkedQueue<Tuple>();
     private File root;
     public static String rootname;
 
@@ -87,7 +87,7 @@ public class DataSerializer {
 
             File infoFile = new File(root, INFO_FILE);
             infoWriter = createWriter(infoFile);
-            infoWriter.write("BJW2\r\n" + getSystemTimeStr()+"\r\n"+"Admin"); //这里还需要加上UserId
+            infoWriter.write("BJW2\r\n" + getSystemTimeStr() + "\r\n" + "Admin"); //这里还需要加上UserId
             infoWriter.newLine();
 
             linkedList = new ConcurrentLinkedQueue<Tuple>();
@@ -147,7 +147,7 @@ public class DataSerializer {
 
     private static class Tuple {
         BufferedWriter writer;
-        Object         object;
+        Object object;
 
         private Tuple(BufferedWriter writer, Object object) {
             this.writer = writer;
@@ -155,22 +155,21 @@ public class DataSerializer {
         }
     }
 
-    private String getSystemTimeStr(){
+    private String getSystemTimeStr() {
         String timeStr;
         Time t = new Time();
         t.setToNow();
         int year = t.year;
-        int month = t.month+1;
+        int month = t.month + 1;
         int day = t.monthDay;
         int hour = t.hour;
         int minute = t.minute;
         int second = t.second;
-        if(hour > 12){
-            hour = hour-12;
-            timeStr = month+"/"+day+"/"+year+" "+hour+":"+minute+":"+second+" PM";
-        }
-        else {
-            timeStr = month+"/"+day+"/"+year+" "+hour+":"+minute+":"+second+" AM";
+        if (hour > 12) {
+            hour = hour - 12;
+            timeStr = month + "/" + day + "/" + year + " " + hour + ":" + minute + ":" + second + " PM";
+        } else {
+            timeStr = month + "/" + day + "/" + year + " " + hour + ":" + minute + ":" + second + " AM";
         }
         System.out.println(timeStr);
         return timeStr;

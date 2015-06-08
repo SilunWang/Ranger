@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 public class Primitive {
     private final static String TAG = Primitive.class.getName();
     @SerializedName("Name")
-    private String   name;
+    private String name;
     @SerializedName("X")
     private double[] x;
     @SerializedName("Y")

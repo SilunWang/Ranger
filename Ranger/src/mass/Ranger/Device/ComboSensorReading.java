@@ -69,10 +69,10 @@ public class ComboSensorReading implements SensorReading {
      */
     @RawName(value = "Gravity", priority = 14, type = RawName.RawType.Combo)
     private Vector3 gravity;
-    
+
     @RawName(value = "Pressure", priority = 15)
     private float pressure;
-    
+
     private Vector3 deviceRotationRate;
     private WiFiStamps wifiStamps;
 
@@ -187,13 +187,13 @@ public class ComboSensorReading implements SensorReading {
     protected void setGravity(Vector3 gravity) {
         this.gravity = gravity;
     }
-    
+
     public float getPressure() {
-    	return pressure;
+        return pressure;
     }
-    
+
     protected void setPressure(float press) {
-    	this.pressure = press;
+        this.pressure = press;
     }
 
     public WiFiStamps getWifiStamps() {
@@ -227,7 +227,7 @@ public class ComboSensorReading implements SensorReading {
                 ", pitch=" + pitch +
                 ", roll=" + roll +
                 ", quaternion=" + quaternion +
-                ", airpressure=" + pressure + 
+                ", airpressure=" + pressure +
                 ", linearAcceleration=" + linearAcceleration +
                 ", rotateVectorReading=" + rotateVectorReading +
                 ", gravity=" + gravity +

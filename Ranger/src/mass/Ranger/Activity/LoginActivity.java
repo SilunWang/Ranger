@@ -56,7 +56,7 @@ public class LoginActivity extends Activity {
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });
@@ -80,7 +80,7 @@ public class LoginActivity extends Activity {
 
             }
         });
-        btnTencentSignIn.setOnClickListener(new View.OnClickListener(){
+        btnTencentSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -118,19 +118,18 @@ public class LoginActivity extends Activity {
 
         String sessionID = webHelper.getSessionIdFromWeb();
         String validateResult = webHelper.validateInWeb(thisUsername, thisPassword, sessionID);
-        if(validateResult.equals("SUCCESS")){
+        if (validateResult.equals("SUCCESS")) {
             Toast.makeText(getApplicationContext(),
                     "Login Success !",
                     Toast.LENGTH_SHORT);
 
             SharedPreferences pref = getSharedPreferences(USER_PREFS, MODE_PRIVATE);
-            String userID = pref.getString("userID",""); //如果userID为空，需要web返回userID
+            String userID = pref.getString("userID", ""); //如果userID为空，需要web返回userID
             saveLoggedInUserInfo(thisUsername, userID, sessionID);
             //Jump to UserInfo layout
             Intent i = new Intent(LoginActivity.this, UserProfileActivity.class);
             startActivity(i);
-        }
-        else{
+        } else {
             Toast.makeText(getApplicationContext(),
                     "Login error, please try again",
                     Toast.LENGTH_SHORT);
@@ -138,13 +137,13 @@ public class LoginActivity extends Activity {
 
     }
 
-    private void saveLoggedInUserInfo( String username, String id, String sessionID) {
+    private void saveLoggedInUserInfo(String username, String id, String sessionID) {
         SharedPreferences userSettings = getSharedPreferences(USER_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = userSettings.edit();
         editor.putString("username", username);
         editor.putString("userID", id);
         editor.putString("sessionID", sessionID);
-        editor.putBoolean("loggedIn",true);
+        editor.putBoolean("loggedIn", true);
         boolean rememberThis = rememberDetails.isChecked();
         editor.putBoolean("rememberThis", rememberThis);
         editor.commit();
@@ -152,6 +151,7 @@ public class LoginActivity extends Activity {
 
     /**
      * Deals with the password encryption.
+     *
      * @param s The password.
      * @return
      */
@@ -162,13 +162,11 @@ public class LoginActivity extends Activity {
             byte messageDigest[] = digest.digest();
 
             StringBuffer hexString = new StringBuffer();
-            for (int i=0; i<messageDigest.length; i++)
+            for (int i = 0; i < messageDigest.length; i++)
                 hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
 
             return hexString.toString();
-        }
-
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             return s;
         }
     }

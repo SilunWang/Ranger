@@ -21,49 +21,41 @@ import mass.Ranger.Algorithm.DTW.FastDtw.util.DistanceFunctionFactory;
  * @author Stan Salvador, stansalvador@hotmail.com
  * @since Jul 14, 2004
  */
-public class FastDtwTest
-{
-   /**
-    * This main method executes the FastDTW algorithm on two time series with a
-    * specified radius. The time series arguments are file names for files that
-    * contain one measurement per line (time measurements are an optional value
-    * in the first column). After calculating the warp path, the warp
-    * path distance will be printed to standard output, followed by the path
-    * in the format "(0,0),(1,0),(2,1)..." were each pair of numbers in
-    * parenthesis are indexes of the first and second time series that are
-    * linked in the warp path
-    *
-    * @param args  command line arguments (see method comments)
-    */
-      public static void main(String[] args)
-      {
-         if (args.length!=3 && args.length!=4)
-         {
+public class FastDtwTest {
+    /**
+     * This main method executes the FastDTW algorithm on two time series with a
+     * specified radius. The time series arguments are file names for files that
+     * contain one measurement per line (time measurements are an optional value
+     * in the first column). After calculating the warp path, the warp
+     * path distance will be printed to standard output, followed by the path
+     * in the format "(0,0),(1,0),(2,1)..." were each pair of numbers in
+     * parenthesis are indexes of the first and second time series that are
+     * linked in the warp path
+     *
+     * @param args command line arguments (see method comments)
+     */
+    public static void main(String[] args) {
+        if (args.length != 3 && args.length != 4) {
             System.out.println("USAGE:  java FastDtwTest timeSeries1 timeSeries2 radius [EuclideanDistance|ManhattanDistance|BinaryDistance]");
             System.exit(1);
-         }
-         else
-         {
+        } else {
             final TimeSeries tsI = new TimeSeries(args[0], false, false, ',');
             final TimeSeries tsJ = new TimeSeries(args[1], false, false, ',');
-            
+
             final DistanceFunction distFn;
-            if (args.length < 4)
-            {
-               distFn = DistanceFunctionFactory.getDistFnByName("EuclideanDistance");
-            }
-            else
-            {
-               distFn = DistanceFunctionFactory.getDistFnByName(args[3]);
+            if (args.length < 4) {
+                distFn = DistanceFunctionFactory.getDistFnByName("EuclideanDistance");
+            } else {
+                distFn = DistanceFunctionFactory.getDistFnByName(args[3]);
             }   // end if
-            
+
             final TimeWarpInfo info = FastDTW.getWarpInfoBetween(tsI, tsJ, Integer.parseInt(args[2]), distFn);
 
             System.out.println("Warp Distance: " + info.getDistance());
             System.out.println("Warp Path:     " + info.getPath());
-         }  // end if
+        }  // end if
 
-      }  // end main()
+    }  // end main()
 
 
 }  // end class FastDtwTest

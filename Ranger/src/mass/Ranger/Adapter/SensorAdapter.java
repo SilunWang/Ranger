@@ -34,20 +34,17 @@ public class SensorAdapter extends ArrayAdapter<SensorSettingItem> {
         View row = convertView;
         SensorHolder holder = null;
 
-        if(row == null)
-        {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        if (row == null) {
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new SensorHolder();
-            holder.imgIcon = (ImageView)row.findViewById(R.id.imgIcon);
-            holder.txtTitle = (TextView)row.findViewById(R.id.txtTitle);
-            holder.switcher = (Switch)row.findViewById(R.id.sensorSwitch);
+            holder.imgIcon = (ImageView) row.findViewById(R.id.imgIcon);
+            holder.txtTitle = (TextView) row.findViewById(R.id.txtTitle);
+            holder.switcher = (Switch) row.findViewById(R.id.sensorSwitch);
             row.setTag(holder);
-        }
-        else
-        {
-            holder = (SensorHolder)row.getTag();
+        } else {
+            holder = (SensorHolder) row.getTag();
         }
 
         SensorSettingItem sensor = data[position];
@@ -57,8 +54,7 @@ public class SensorAdapter extends ArrayAdapter<SensorSettingItem> {
         return row;
     }
 
-    static class SensorHolder
-    {
+    static class SensorHolder {
         ImageView imgIcon;
         TextView txtTitle;
         Switch switcher;

@@ -27,7 +27,7 @@ public class ChooseTraceActivity extends Activity {
     SharedPreferences traceList;
     ArrayList<String> traceIDList = new ArrayList<String>();
 
-    private void initView(){
+    private void initView() {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getTraceData());
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,7 +44,7 @@ public class ChooseTraceActivity extends Activity {
     }
 
 
-    private List<String> getTraceData(){
+    private List<String> getTraceData() {
         ArrayList<String> list = new ArrayList<String>();
         try {
             int size = Integer.parseInt(traceList.getString("trace_size", null));
@@ -56,7 +56,7 @@ public class ChooseTraceActivity extends Activity {
                 }
                 size--;
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;

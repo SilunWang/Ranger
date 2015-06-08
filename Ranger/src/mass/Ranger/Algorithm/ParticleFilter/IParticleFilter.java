@@ -9,15 +9,15 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 
 public abstract class IParticleFilter {
-    private static final String                   TAG                    = IParticleFilter.class.getName();
+    private static final String TAG = IParticleFilter.class.getName();
     //locks for mutual exclusion.
-    private final static Object                   LOCK_PARTICLE_WEIGHTER = new Object();
-    private final static Object                   LOCK_PARTICLE_DELTA    = new Object();
-    private final static Object                   LOCK_PARTICLES         = new Object();
-    private final static int                      WEIGHTER_BUFFER_SIZE   = 1000;
-    protected            long                     latestStepTimestamp    = 0;
-    private              Queue<IParticleWeighter> particleWeighters      = new ConcurrentLinkedQueue<IParticleWeighter>();
-    private              Queue<StepVector>        particleDelta          = new ConcurrentLinkedQueue<StepVector>();
+    private final static Object LOCK_PARTICLE_WEIGHTER = new Object();
+    private final static Object LOCK_PARTICLE_DELTA = new Object();
+    private final static Object LOCK_PARTICLES = new Object();
+    private final static int WEIGHTER_BUFFER_SIZE = 1000;
+    protected long latestStepTimestamp = 0;
+    private Queue<IParticleWeighter> particleWeighters = new ConcurrentLinkedQueue<IParticleWeighter>();
+    private Queue<StepVector> particleDelta = new ConcurrentLinkedQueue<StepVector>();
     private IParticleWeighter mapWeighter;
 
     public IParticleWeighter getMapWeighter() {
@@ -65,7 +65,7 @@ public abstract class IParticleFilter {
      * The thread callback function for one iteration
      *
      * @return true  - successfully processed one iteration
-     *         false - nothing to process, a good indicator for sleeping to the caller
+     * false - nothing to process, a good indicator for sleeping to the caller
      */
     public final boolean process() {
         moveByDelta();

@@ -4,7 +4,7 @@ public class AccessPointAnnotatedRSSMeasurement extends ReceivedSignalStrengthMe
     /**
      * A GUID request ID that can be used to compute errors later
      */
-    private String      requestID;
+    private String requestID;
     private AccessPoint AccessPoint;
 
     public AccessPointAnnotatedRSSMeasurement(String requestId, AccessPoint accessPoint, int signalStrength) {

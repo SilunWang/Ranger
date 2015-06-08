@@ -8,9 +8,10 @@ import mass.Ranger.Algorithm.DTW.FastDtw.timeseries.TimeSeries;
 import mass.Ranger.Algorithm.DTW.FastDtw.timeseries.TimeSeriesPoint;
 import mass.Ranger.Algorithm.DTW.FastDtw.util.DistanceFunction;
 import mass.Ranger.Algorithm.DTW.FastDtw.util.DistanceFunctionFactory;
-import mass.Ranger.Logger.MyLog;
 import mass.Ranger.Device.AccessPointReading;
+import mass.Ranger.Logger.MyLog;
 import mass.Ranger.View.PathView;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -67,8 +68,8 @@ public class SimpleParticleFilter {
                                 ArrayList<Float> trRad,
                                 ArrayList<ArrayList<Double>> magTrace) {
         WiFis = WiFiSamples;
-        arrayX = (ArrayList<Float>)traceX.clone();
-        arrayY = (ArrayList<Float>)traceY.clone();
+        arrayX = (ArrayList<Float>) traceX.clone();
+        arrayY = (ArrayList<Float>) traceY.clone();
         this.magTrace = (ArrayList<ArrayList<Double>>) magTrace.clone();
         traceRad = trRad;
         if (traceRad.size() > 0)
@@ -79,10 +80,10 @@ public class SimpleParticleFilter {
         if (traceLen > traceRad.size()) {
             traceLen = traceRad.size();
         }
-        if (traceLen > magTrace.size()){
+        if (traceLen > magTrace.size()) {
             traceLen = magTrace.size();
         }
-        if (traceLen > WiFiSamples.size()){
+        if (traceLen > WiFiSamples.size()) {
             traceLen = WiFiSamples.size();
         }
 
@@ -138,14 +139,14 @@ public class SimpleParticleFilter {
         particleY[0] = arrayY.get(startIndex);
 
         //evenly distributed particle?
-        double len_unit = (double)(endIndex - startIndex) * PathView.stepLength / particleNum;
+        double len_unit = (double) (endIndex - startIndex) * PathView.stepLength / particleNum;
         for (int i = 1; i < particleNum; i++) {
-            int j = (int)((double) i / particleNum * (endIndex - startIndex));
+            int j = (int) ((double) i / particleNum * (endIndex - startIndex));
             double LenNoise = (RD.nextDouble() - 0.5) * 10 * len_unit;
             len[i] = LenNoise;
             rad[i] = traceRad.get(startIndex + j);
-            particleX[i] = (float) (particleX[i-1] + Math.cos(rad[i]) * (len_unit + len[i]));
-            particleY[i] = (float) (particleY[i-1] - Math.sin(rad[i]) * (len_unit + len[i]));
+            particleX[i] = (float) (particleX[i - 1] + Math.cos(rad[i]) * (len_unit + len[i]));
+            particleY[i] = (float) (particleY[i - 1] - Math.sin(rad[i]) * (len_unit + len[i]));
         }
         dispXLast = dispx;
         dispYLast = dispy;
@@ -158,12 +159,12 @@ public class SimpleParticleFilter {
 
     int max_wifi_index;
 
-    public static ArrayList<DTWDataPoint> resampleArray(ArrayList<DTWDataPoint> array, int numberOfSample){
+    public static ArrayList<DTWDataPoint> resampleArray(ArrayList<DTWDataPoint> array, int numberOfSample) {
         int count = array.size();
-        float interval = (float)count/(float)numberOfSample;
+        float interval = (float) count / (float) numberOfSample;
         ArrayList<DTWDataPoint> result = new ArrayList<DTWDataPoint>();
-        for (int i = 0; i < numberOfSample; i+=1) {
-            DTWDataPoint point = (((DTWDataPoint)array.get((int)Math.floor(i*interval))));
+        for (int i = 0; i < numberOfSample; i += 1) {
+            DTWDataPoint point = (((DTWDataPoint) array.get((int) Math.floor(i * interval))));
             result.add(new DTWDataPoint(point.data, point.timeStamp));
         }
         return result;
@@ -181,9 +182,9 @@ public class SimpleParticleFilter {
         for (int j = 0; j < currMag.size(); j++) {
             ArrayList<Double> aStepMagnetReading = magTrace.get(j);
             int count = aStepMagnetReading.size();
-            float interval = (float)count/(float)dtwDensity;
-            for (int k = 0; k <dtwDensity; k++) {
-                mag2.addLast((float)(((float)j)+1.0/((float)dtwDensity)*k), new TimeSeriesPoint(new double[]{aStepMagnetReading.get((int)Math.floor(k*interval))}));
+            float interval = (float) count / (float) dtwDensity;
+            for (int k = 0; k < dtwDensity; k++) {
+                mag2.addLast((float) (((float) j) + 1.0 / ((float) dtwDensity) * k), new TimeSeriesPoint(new double[]{aStepMagnetReading.get((int) Math.floor(k * interval))}));
             }
         }
         for (int i = 0; i < traceLen; i++) {
@@ -204,22 +205,21 @@ public class SimpleParticleFilter {
             if (i >= magTrace.size()) {
                 //TODO: is this good enough?
                 magnetDTWDistance.add(10.0);
-            }
-            else {
+            } else {
                 TimeSeries mag1 = new TimeSeries(1);
-                for (int j = i - (dtwWindowSize -1) >= 0 ? i - (dtwWindowSize -1) : 0; j <= i; j++) {
+                for (int j = i - (dtwWindowSize - 1) >= 0 ? i - (dtwWindowSize - 1) : 0; j <= i; j++) {
                     ArrayList<Double> aStepMagnetReading = magTrace.get(j);
                     int count = aStepMagnetReading.size();
-                    float interval = (float)count/(float)dtwDensity;
-                    for (int k = 0; k <dtwDensity; k++) {
-                        mag1.addLast((float)(((float)j)+1.0/((float)dtwDensity)*k), new TimeSeriesPoint(new double[]{aStepMagnetReading.get((int)Math.floor(k*interval))}));
+                    float interval = (float) count / (float) dtwDensity;
+                    for (int k = 0; k < dtwDensity; k++) {
+                        mag1.addLast((float) (((float) j) + 1.0 / ((float) dtwDensity) * k), new TimeSeriesPoint(new double[]{aStepMagnetReading.get((int) Math.floor(k * interval))}));
                     }
                 }
-                if (i>=startIndex-extraSampleWindow && i<= endIndex+extraSampleWindow) {
+                if (i >= startIndex - extraSampleWindow && i <= endIndex + extraSampleWindow) {
                     final DistanceFunction distFn = DistanceFunctionFactory.getDistFnByName("EuclideanDistance");
                     final TimeWarpInfo info = FastDTW.getWarpInfoBetween(mag1, mag2, 10, distFn);
                     magnetDTWDistance.add(info.getDistance());
-                }else{
+                } else {
                     magnetDTWDistance.add(0.0);
                 }
             }
@@ -259,14 +259,13 @@ public class SimpleParticleFilter {
             for (int j = 0; j < traceLen - 1; j++) {
                 double d_wifi = (wifiSimList.get(j) - wiFiDistSum) / (wifiMax - wifiMin + 0.01);
                 double d_magnet;
-                if (j>=startIndex-extraSampleWindow && i<= endIndex+extraSampleWindow)
-                {
+                if (j >= startIndex - extraSampleWindow && i <= endIndex + extraSampleWindow) {
                     d_magnet = (magDistSum - magnetDTWDistance.get(j)) / (magMax - magMin + 0.01);
-                }else{
+                } else {
                     d_magnet = 0;
                 }
                 double d_Euc = getEucDistance(particleX[i], particleY[i], arrayX.get(j), arrayY.get(j)) + 0.1;
-                correlation += (d_wifi + d_magnet) / d_Euc;
+                correlation += (d_magnet + d_wifi) / d_Euc;
             }
             double tunable_para = 10;
             // weight = e^(corr / k)
@@ -305,14 +304,12 @@ public class SimpleParticleFilter {
                 currTraceIndex = index + 3 < max_wifi_index ? index + 3 : max_wifi_index;
             else
                 currTraceIndex = currTraceIndex + 3 < max_wifi_index ? currTraceIndex + 3 : max_wifi_index;
-        }
-        else if (max_wifi_index < currTraceIndex) {
+        } else if (max_wifi_index < currTraceIndex) {
             if (index < currTraceIndex)
                 currTraceIndex = index - 3 > max_wifi_index ? index - 3 : max_wifi_index;
             else
                 currTraceIndex = currTraceIndex - 3 > max_wifi_index ? currTraceIndex - 3 : max_wifi_index;
-        }
-        else {
+        } else {
             currTraceIndex = index;
         }
         double low_pass_filter = 0.6;

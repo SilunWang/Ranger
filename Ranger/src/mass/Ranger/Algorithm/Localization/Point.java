@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Point implements Parcelable {
-    public static final Point          ZERO    = new Point(0, 0);
+    public static final Point ZERO = new Point(0, 0);
     public final static Creator<Point> CREATOR = new Creator<Point>() {
         @Override
         public Point createFromParcel(Parcel source) {

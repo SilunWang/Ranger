@@ -1,7 +1,7 @@
 package mass.Ranger.Util;
 
 public class ThreadSafeRandom {
-    private static       Random random = new Random((int) System.currentTimeMillis());
+    private static Random random = new Random((int) System.currentTimeMillis());
 
     public static Random getRandom() {
         return random;

@@ -5,11 +5,11 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class UserManager {
-    private final static String                       TAG            = UserManager.class.getName();
-    private final static UserManager                  MANAGER        = new UserManager();
-    private final static ReentrantLock                lock           = new ReentrantLock();
-    private final static Condition                    tokenCondition = lock.newCondition();
-    private              AtomicReference<AccessToken> latestToken    = new AtomicReference<AccessToken>(null);
+    private final static String TAG = UserManager.class.getName();
+    private final static UserManager MANAGER = new UserManager();
+    private final static ReentrantLock lock = new ReentrantLock();
+    private final static Condition tokenCondition = lock.newCondition();
+    private AtomicReference<AccessToken> latestToken = new AtomicReference<AccessToken>(null);
 
     private UserManager() {
     }

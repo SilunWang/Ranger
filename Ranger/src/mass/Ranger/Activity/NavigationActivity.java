@@ -37,7 +37,7 @@ public class NavigationActivity extends Activity {
     public static float terminalYCoordinate = 0;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigator);
         initView();
@@ -67,7 +67,7 @@ public class NavigationActivity extends Activity {
         });
     }
 
-    private void initView(){
+    private void initView() {
         browseBtn = (Button) findViewById(R.id.browsebutton);
         startBtn = (ToggleButton) findViewById(R.id.startbutton);
         pathView = (PathView) findViewById(R.id.navigator_view);
@@ -85,8 +85,7 @@ public class NavigationActivity extends Activity {
             backPositioning.initPF();
             backPositioning.start();
             Toast.makeText(getApplicationContext(), "导航开始", Toast.LENGTH_SHORT).show();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }
@@ -105,9 +104,10 @@ public class NavigationActivity extends Activity {
 
     /**
      * Recall function
+     *
      * @param requestCode
      * @param resultCode
-     * @param data file data
+     * @param data        file data
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -134,7 +134,7 @@ public class NavigationActivity extends Activity {
         }
     }
 
-    public void setIndicator(boolean state){
+    public void setIndicator(boolean state) {
         ToggleButton activityIndicator = (ToggleButton) findViewById(R.id.activity_indicator);
         activityIndicator.setChecked(state);
     }

@@ -12,9 +12,10 @@ public class ShareToOtherApp {
 
     /**
      * 判断是否安装腾讯、新浪等指定的分享应用
+     *
      * @param packageName 应用的包名
      */
-    public boolean checkInstallation(String packageName, Activity activity){
+    public boolean checkInstallation(String packageName, Activity activity) {
         try {
             activity.getApplication().getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
             return true;
@@ -23,13 +24,13 @@ public class ShareToOtherApp {
         }
     }
 
-    public void doInstall(Activity activity){
+    public void doInstall(Activity activity) {
         Uri uri = Uri.parse("market://details?id=应用包名");
-        Intent it = new Intent(Intent.ACTION_VIEW,uri);
+        Intent it = new Intent(Intent.ACTION_VIEW, uri);
         activity.getApplication().startActivity(it);
     }
 
-    public void shareTo(Activity activity){
+    public void shareTo(Activity activity) {
 
     }
 

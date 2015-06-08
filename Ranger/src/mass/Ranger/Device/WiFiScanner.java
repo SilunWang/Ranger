@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WiFiScanner {
-    private final String                        TAG              = WiFiScanner.class.getName();
-    private final List<WiFiScannerEventHandler> handlers         = new ArrayList<WiFiScannerEventHandler>();
+    private final String TAG = WiFiScanner.class.getName();
+    private final List<WiFiScannerEventHandler> handlers = new ArrayList<WiFiScannerEventHandler>();
     /*
     A systemic wifi scan finished event handler
     */
-    private final BroadcastReceiver             wifiScanReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (getResultCode() == Activity.RESULT_OK) {
@@ -57,7 +57,7 @@ public class WiFiScanner {
                     wifiStamps.setStartTimeMillis(startMillis);
                     wifiStamps.setEndTimeTimeMillis(endMillis);
                 }
-                
+
                 for (WiFiScannerEventHandler handler : handlers) {
                     handler.onWiFiScanFinished(wifiStamps);
                 }
@@ -66,7 +66,7 @@ public class WiFiScanner {
             }
         }
     };
-    private long        startMillis;
+    private long startMillis;
     private WifiManager wifiManager;
 
     public WiFiScanner(Context context) {

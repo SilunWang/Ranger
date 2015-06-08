@@ -8,7 +8,7 @@ import android.os.Handler;
 import java.util.HashSet;
 
 public class NewTaskMonitor {
-    private static final String                  TAG       = NewTaskMonitor.class.getName();
+    private static final String TAG = NewTaskMonitor.class.getName();
     private static final HashSet<ChangeListener> listeners = new HashSet<ChangeListener>();
     private static Cursor taskCursor;
     private static Cursor localEventCursor;
@@ -28,7 +28,7 @@ public class NewTaskMonitor {
             queryUnFinishCount();
         }
     };
-    private static ContentObserver taskContentObserver  = new ContentObserver(new Handler()) {
+    private static ContentObserver taskContentObserver = new ContentObserver(new Handler()) {
         @Override
         public boolean deliverSelfNotifications() {
             return true;
@@ -71,7 +71,7 @@ public class NewTaskMonitor {
     }
 
     private static void queryUnFinishCount() {
-        
+
     }
 
     public static interface ChangeListener {

@@ -5,14 +5,14 @@ import android.graphics.Point;
 import java.util.List;
 
 public class Utils {
-    public static final  String TAG                   = Utils.class.getName();
-    public final static  int    TicksInMs             = 10000;
-    public final static  int    DefaultSampleRate     = 50;
-    public final static  double EarthRadiusInMeter    = 6371000.0;
-    public final static  double TicksInOneSecond      = 1E7;
-    public final static  double defaultPrecision      = 0.000000001;
-    public static final  int    MILLISECOND_IN_SECOND = 1000;
-    private final static char[] HEX_ARRAY             = "0123456789ABCDEF".toCharArray();
+    public static final String TAG = Utils.class.getName();
+    public final static int TicksInMs = 10000;
+    public final static int DefaultSampleRate = 50;
+    public final static double EarthRadiusInMeter = 6371000.0;
+    public final static double TicksInOneSecond = 1E7;
+    public final static double defaultPrecision = 0.000000001;
+    public static final int MILLISECOND_IN_SECOND = 1000;
+    private final static char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
     public static String convertMillisecondToTimeSpan(long millisecond) {
         long value = millisecond;
@@ -128,7 +128,6 @@ public class Utils {
     public static double radianToDegree(double radian) {
         return radian * 180 / Math.PI;
     }
-
 
 
     private double diffTwoAngle(double angle1, double angle2) {

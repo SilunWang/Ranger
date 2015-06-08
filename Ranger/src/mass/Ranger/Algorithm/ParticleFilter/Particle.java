@@ -3,9 +3,9 @@ package mass.Ranger.Algorithm.ParticleFilter;
 import mass.Ranger.Algorithm.Localization.Point;
 
 public class Particle {
-    private Point  current = new Point(0, 0);
-    private Point  last    = new Point(0, 0);
-    private double weight  = 0;
+    private Point current = new Point(0, 0);
+    private Point last = new Point(0, 0);
+    private double weight = 0;
 
     public Point getCurrent() {
         return current;
@@ -37,9 +37,9 @@ public class Particle {
     @Override
     public String toString() {
         return "Particle{" +
-               "current=" + current +
-               ", last=" + last +
-               ", weight=" + weight +
-               '}';
+                "current=" + current +
+                ", last=" + last +
+                ", weight=" + weight +
+                '}';
     }
 }
