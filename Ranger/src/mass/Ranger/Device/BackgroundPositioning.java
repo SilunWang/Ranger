@@ -158,9 +158,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
     @Override
     public void onStepDetected(StepCandidate step) {
         try {
-            if (parentActivity != null) {
-                parentActivity.setIndicator(true);
-            }
+
             final double heading = step.getHeadingInDegree();
             double radian = Utils.degreeToRadian(heading);
             // magnet sliding window <= 5
@@ -175,10 +173,10 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
             //make sure the initial radian is the same
             if (!radianInitialized) {
                 initial_radian = radian;
-                radian = radian - initial_radian + Math.PI / 2;
+                radian = Math.PI/2 - (radian - initial_radian);
                 radianInitialized = true;
             } else {
-                radian = radian - initial_radian + Math.PI / 2;
+                radian = Math.PI/2 - (radian - initial_radian);
             }
             realtimeX += Math.cos(radian) * PathView.stepLength;
             realtimeY += Math.sin(radian) * PathView.stepLength;
@@ -204,9 +202,7 @@ public class BackgroundPositioning implements ComboSensor.ComboSensorEventListen
             }
             // init
             magnetReading = new ArrayList<Double>();
-            if (parentActivity != null) {
-                parentActivity.setIndicator(false);
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

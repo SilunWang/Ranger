@@ -41,15 +41,17 @@
 
     <Button
             android:id="@+id/id_navi_test"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="test navigation"/>
+            android:layout_width="150dip"
+            android:layout_height="70dip"
+            android:text="开始导航！"
+            android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:orientation="horizontal"
-            android:background="#e1e9ef">
+            android:background="#e1e9ef"
+            android:layout_gravity="center_horizontal">
         <FrameLayout
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"

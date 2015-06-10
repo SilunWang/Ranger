@@ -64,7 +64,7 @@ public class DataFiles {
         clearTraces();
         try {
             root = Environment.getExternalStorageDirectory();
-            root = new File(root, "/Travi-Navi");
+            root = new File(root, "/Ranger");
             path = new File(root, BackgroundPositioning.patrollingID);
 
             if (!path.exists())

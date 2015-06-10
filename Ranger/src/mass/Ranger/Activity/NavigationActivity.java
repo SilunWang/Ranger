@@ -73,12 +73,6 @@ public class NavigationActivity extends Activity {
         pathView = (PathView) findViewById(R.id.navigator_view);
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View parentView = inflater.inflate(R.layout.navigator, container, false);
-        return parentView;
-    }
-
     public void startNaviService() {
         //Debug.startMethodTracing("calc");
         try {
@@ -115,7 +109,7 @@ public class NavigationActivity extends Activity {
         if (resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
             File root = Environment.getExternalStorageDirectory();
-            root = new File(root, "/Travi-Navi");
+            root = new File(root, "/Ranger");
             File path = new File(root, uri.toString());
             path = new File(path, "step.txt");
             String url = path.getAbsolutePath();
@@ -134,9 +128,5 @@ public class NavigationActivity extends Activity {
         }
     }
 
-    public void setIndicator(boolean state) {
-        ToggleButton activityIndicator = (ToggleButton) findViewById(R.id.activity_indicator);
-        activityIndicator.setChecked(state);
-    }
 
 }

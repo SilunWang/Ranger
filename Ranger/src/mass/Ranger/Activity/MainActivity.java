@@ -24,9 +24,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, N
      * Email: badjoker@163.com
      */
 
-
-    private ActionBar mActionBar;
-
     private ConnectivityManager cm;
     private static Handler handler;
 
@@ -36,9 +33,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, N
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //initActionBar();
-        //initView();
 
         NewTaskMonitor.registerListener(this);
 
@@ -59,11 +53,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, N
             }
 
         };
-    }
-
-    private void initActionBar() {
-        //mActionBar = getSupportActionBar();
-        //mActionBar.hide();
     }
 
     public static Handler getHandler() {
@@ -87,16 +76,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener, N
 
     @Override
     public void onChanged(int localCount, int taskCount) {
-    }
-
-
-    private void changeFragment(Fragment targetFragment) {
-        /*
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container, targetFragment, "fragment")
-                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .commit();*/
     }
 
 

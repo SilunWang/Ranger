@@ -7,30 +7,11 @@
               android:layout_height="match_parent"
               tools:context="mass.Ranger.Activity.MainActivity">
 
-    <!--<Button-->
-            <!--android:id="@+id/id_navigation_btn"-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:padding="15dp"-->
-            <!--android:text="导航"-->
-            <!--android:textSize="24sp"-->
-            <!--android:gravity="center"/>-->
-
 
     <fragment
             android:name="mass.Ranger.Fragment.AllTraceFragment"
             android:id="@+id/id_trace_fragment"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"/>
-
-    <!--android:layout_below="@+id/id_navigation_btn"-->
-
-
-    <!--<fragment-->
-            <!--android:name="mass.Travi_Navi.Activity.NavigationActivity"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_below="@+id/id_navigation_btn"/>-->
 
 </RelativeLayout>
